@@ -1,0 +1,53 @@
+{
+  "name": "significa-start",
+  "description": "Bootstrap your React Projects",
+  "version": "0.0.1",
+  "author": "Pedro Brandão @pbrandone",
+  "bin": {
+    "significa-start": "./bin/run"
+  },
+  "bugs": "https://github.com/significa/significa-start/issues",
+  "dependencies": {
+    "@oclif/command": "^1.5.19",
+    "@oclif/config": "^1.13.3",
+    "@oclif/plugin-help": "^2.2.1",
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@oclif/test": "^1.2.5",
+    "@types/chai": "^4.2.5",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^10.17.6",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "eslint-config-oclif-typescript": "^0.1.0",
+    "mocha": "^5.2.0",
+    "nyc": "^14.1.1",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
+  "homepage": "https://github.com/significa/significa-start",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "bin": "significa-start"
+  },
+  "repository": "significa/significa-start",
+  "scripts": {
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\""
+  },
+  "types": "lib/index.d.ts"
+}
