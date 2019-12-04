@@ -78,7 +78,7 @@ async function createGatsby(name: string) {
       task: async () => {
         const baseDir = path.join(__dirname, 'overrides')
         const { stdout } = await execa('id', ['-u'])
-        await execa('rsync', ['-a', '--delete', `${baseDir}/`, cwd], {
+        await execa('rsync', ['-a', '--update', `${baseDir}/`, cwd], {
           uid: parseInt(stdout, 10),
         })
       },
