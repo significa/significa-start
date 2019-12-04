@@ -1,11 +1,13 @@
 import { Command, flags } from '@oclif/command'
 import chalk from 'chalk'
 import execa from 'execa'
-
-import createGatsby from './stacks/gatsby'
 import Listr from 'listr'
 
-const projectTypes = ['cra', 'gatsby', 'next']
+import { projectTypes, Stacks } from './types'
+
+import createGatsby from './lib/gatsby'
+import applyCommonConfig from './lib/common'
+import applyOverrides from './lib/overrides'
 
 class SignificaStart extends Command {
   static description = 'Significa project starter'
@@ -24,12 +26,12 @@ class SignificaStart extends Command {
     {
       name: 'type',
       required: true,
-      options: projectTypes,
+      options: (projectTypes as unknown) as string[],
     },
     { name: 'name', required: true },
   ]
 
-  createProject(type: string, name: string) {
+  startProject(name: string, type: Stacks) {
     switch (type) {
       case 'cra':
         return execa('npx', ['create-react-app', name, '--typescript'])
@@ -49,12 +51,32 @@ class SignificaStart extends Command {
   }
 
   async run() {
-    const { args } = this.parse(SignificaStart)
+    const {
+      args: { name, type },
+    }: { args: { name: string; type: Stacks } } = this.parse(SignificaStart)
 
     const task = new Listr([
       {
-        title: `Starting new ${args.type} project: ${chalk.blue(args.name)}`,
-        task: () => this.createProject(args.type, args.name),
+        title: `Starting new ${chalk.yellow(type)} project: ${chalk.blue(
+          name
+        )}`,
+        task: async () => this.startProject(name, type),
+      },
+      {
+        title: 'Apply common src folder',
+        task: async () => {},
+      },
+      {
+        title: 'Static type checking',
+        task: async () => applyCommonConfig(name),
+      },
+      {
+        title: 'Apply overrides',
+        task: async () => applyOverrides(name, type),
+      },
+      {
+        title: 'Final touches', // Git, etc.
+        task: async () => {},
       },
     ])
 
