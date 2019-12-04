@@ -1,8 +1,8 @@
 {
   "name": "significa-start",
-  "description": "Bootstrap your React Projects",
+  "description": "Significa project starter",
   "version": "0.0.1",
-  "author": "Pedro Brandão @pbrandone",
+  "author": "Significa Lda. <hello@significa.co>",
   "bin": {
     "significa-start": "./bin/run"
   },
