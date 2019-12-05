@@ -2,8 +2,6 @@
 
 Gatsby project generated using [significa-start](https://github.com/Significa/significa-start)
 
-# Available scripts
-
 ## Install dependencies
 
 ```

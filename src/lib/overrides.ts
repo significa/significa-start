@@ -2,7 +2,7 @@ import execa from 'execa'
 import path from 'path'
 import log from '../utils/log'
 
-async function applyOverrides(name: string, type: string) {
+async function overrides(name: string, type: string) {
   const cwd = path.join(process.cwd(), name)
 
   const spinner = log.step('Overwritting necessary files')
@@ -15,4 +15,4 @@ async function applyOverrides(name: string, type: string) {
   spinner.succeed()
 }
 
-export default applyOverrides
+export default overrides

@@ -46,7 +46,7 @@ async function applyCommonConfig(name: string) {
     }
   )
 
-  log.step('Installing dependencies')
+  log.step('Installing missing dependencies')
   await execa('npm', ['i', '--save-dev', ...devDependencies], { cwd })
 
   spinner.succeed()

@@ -5,6 +5,7 @@ const copy = require('copy-template-dir')
 import log from '../utils/log'
 
 const dependencies: string[] = ['styled-components']
+const devDependencies: string[] = ['@types/styled-components']
 
 async function cra(name: string) {
   const cwd = path.join(process.cwd(), name)
@@ -33,6 +34,7 @@ async function cra(name: string) {
 
   log.step('Installing dependencies')
   await execa('npm', ['i', '--save', ...dependencies], { cwd })
+  await execa('npm', ['i', '--save-dev', ...devDependencies], { cwd })
 
   spinner.succeed()
 }

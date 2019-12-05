@@ -20,6 +20,7 @@
     "jsonfile": "^5.0.0",
     "ora": "^4.0.3",
     "path": "^0.12.7",
+    "tmp": "^0.1.0",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
@@ -31,6 +32,7 @@
     "@types/node": "^10.17.6",
     "@types/react": "^16.9.14",
     "@types/react-dom": "^16.9.4",
+    "@types/tmp": "^0.1.0",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
     "eslint-config-oclif-typescript": "^0.1.0",

@@ -9,6 +9,8 @@ import next from './lib/next'
 import cra from './lib/cra'
 import common from './lib/common'
 import overrides from './lib/overrides'
+import initGit from './lib/git'
+import addSrc from './lib/addSrc'
 
 const stacks = ['cra', 'gatsby', 'next'] as const
 
@@ -65,10 +67,12 @@ class SignificaStart extends Command {
     }
 
     // Apply src folder
-    // <here>
+    log.info('Adding base src folder')
+    await addSrc(name, 'git@github.com:Significa/significa-src.git')
 
     // Apply Significa UI
-    // <here>
+    log.info('Adding base UI components')
+    await addSrc(name, 'git@github.com:Significa/significa-ui.git')
 
     // Add static type checking
     log.info('Adding static type checking and base configuration')
@@ -95,6 +99,10 @@ class SignificaStart extends Command {
       // Add storybook
       // <here>
     }
+
+    // Git
+    log.info('Git')
+    await initGit(name)
 
     log.success(
       `Project created! \n\n  Type in ${chalk.blue(
