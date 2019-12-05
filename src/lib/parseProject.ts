@@ -14,6 +14,16 @@ lodash.templateSettings = {
   escape: /{{-([\s\S]+?)}}/g,
 }
 
+/**
+ * Template and override files can include block that are removed from the project:
+ * // start-remove
+ * any content here
+ * // eslint-disable react/jsx-no-undef
+ * more content
+ * // end-remove
+ */
+const removeBlockRegex = /(\/\/\s{0,1}start-remove)(.|\n){0,}(\/\/\s{0,1}end-remove)/gim
+
 async function parseProject(projectPath: string, vars: Vars) {
   const spinner = log.step(
     'Replacing variables and removing underscore from filenames'
@@ -34,12 +44,20 @@ async function parseProject(projectPath: string, vars: Vars) {
   files.forEach(async file => {
     const content = await fs.readFileSync(file, 'utf8')
     const template = lodash.template(content)
-    await fs.writeFileSync(file, template(vars))
+    const newContent = template(vars).replace(removeBlockRegex, '')
+    await fs.writeFileSync(file, newContent)
+    const filename = path.basename(file)
+    const fileDir = path.dirname(file)
+
+    // Remove .example from filename
+    if (/.example/gi.test(filename)) {
+      await execa('mv', [filename, filename.replace(/.example/gi, '')], {
+        cwd: fileDir,
+      })
+    }
 
     // Rename files that start with _
-    const filename = path.basename(file)
     if (filename.startsWith('_')) {
-      const fileDir = path.dirname(file)
       await execa('mv', [filename, filename.replace(/^_/, '')], {
         cwd: fileDir,
       })
