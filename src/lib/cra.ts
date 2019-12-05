@@ -1,6 +1,5 @@
 import execa from 'execa'
 import path from 'path'
-const copy = require('copy-template-dir')
 
 import log from '../utils/log'
 
@@ -23,12 +22,12 @@ async function cra(name: string) {
   await execa('rm', ['-rf', 'src'], { cwd })
 
   log.step('Adding project files')
-  await copy(
-    path.join(__dirname, '../templates/cra'),
-    cwd,
-    { name },
-    (err: any) => {
-      if (err) throw err
+  const { stdout } = await execa('id', ['-u'])
+  await execa(
+    'rsync',
+    ['-a', '--update', `${path.join(__dirname, '../templates/cra')}/`, cwd],
+    {
+      uid: parseInt(stdout, 10),
     }
   )
 

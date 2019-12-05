@@ -1,6 +1,7 @@
 import { Command, flags } from '@oclif/command'
 import fs from 'fs'
 import chalk from 'chalk'
+import path from 'path'
 
 import log from './utils/log'
 
@@ -11,6 +12,7 @@ import common from './lib/common'
 import overrides from './lib/overrides'
 import initGit from './lib/git'
 import addSrc from './lib/addSrc'
+import parseProject from './lib/parseProject'
 
 const stacks = ['cra', 'gatsby', 'next'] as const
 
@@ -81,6 +83,10 @@ class SignificaStart extends Command {
     // Apply overrides
     log.info('Applying project overrides')
     await overrides(name, type)
+
+    // Apply variables
+    log.info('Parse project')
+    await parseProject(path.join(process.cwd(), name), { name })
 
     // Tests
     if (type !== 'cra') {

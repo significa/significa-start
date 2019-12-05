@@ -1,6 +1,5 @@
 import execa from 'execa'
 import path from 'path'
-const copy = require('copy-template-dir')
 
 import addScript from '../utils/add-script'
 import log from '../utils/log'
@@ -52,12 +51,12 @@ async function gatsby(name: string) {
   })
 
   log.step('Adding project files')
-  await copy(
-    path.join(__dirname, '../templates/gatsby'),
-    cwd,
-    { name },
-    (err: any) => {
-      if (err) throw err
+  const { stdout } = await execa('id', ['-u'])
+  await execa(
+    'rsync',
+    ['-a', '--update', `${path.join(__dirname, '../templates/gatsby')}/`, cwd],
+    {
+      uid: parseInt(stdout, 10),
     }
   )
 

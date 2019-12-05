@@ -1,4 +1,4 @@
-# {{name}}
+# {{= name }}
 
 Next project generated using [significa-start](https://github.com/Significa/significa-start)
 
