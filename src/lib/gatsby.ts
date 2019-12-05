@@ -1,9 +1,9 @@
-import Listr from 'listr'
 import execa from 'execa'
 import path from 'path'
 const copy = require('copy-template-dir')
 
 import addScript from '../utils/add-script'
+import log from '../utils/log'
 
 const scripts: { [key: string]: string } = {
   build: 'gatsby build',
@@ -28,56 +28,44 @@ const dependencies: string[] = [
   'gatsby-transformer-sharp',
   'gatsby-plugin-sharp',
   'gatsby-plugin-manifest',
+  'gatsby-plugin-styled-components',
 ]
 
 const devDependencies: string[] = [
   'typescript',
-  'prettier',
   '@types/react',
-  '@types/react-dom',
   '@types/styled-components',
+  '@svgr/webpack',
+  'tsconfig-paths-webpack-plugin',
 ]
 
-async function createGatsby(name: string) {
+async function gatsby(name: string) {
   const cwd = path.join(process.cwd(), name)
 
-  return new Listr([
-    {
-      title: 'Creating folder and initializing project',
-      task: async () => {
-        await execa('mkdir', [name])
-        await execa('npm', ['init', '-y'], { cwd })
-      },
-    },
-    {
-      title: 'Adding scripts to package.json',
-      task: async () => {
-        Object.keys(scripts).forEach(async key => {
-          await addScript(`${cwd}/package.json`, key, scripts[key])
-        })
-      },
-    },
-    {
-      title: 'Add project files',
-      task: async () => {
-        copy(
-          path.join(__dirname, '../templates/gatsby'),
-          cwd,
-          { name },
-          (err: any) => {
-            if (err) throw err
-          }
-        )
-      },
-    },
-    {
-      title: 'Installing dependencies',
-      task: async () => {
-        await execa('npm', ['i', '--save', ...dependencies], { cwd })
-        await execa('npm', ['i', '--save-dev', ...devDependencies], { cwd })
-      },
-    },
-  ])
+  const spinner = log.step('Creating folder and initializing project')
+  await execa('mkdir', [name])
+  await execa('npm', ['init', '-y'], { cwd })
+
+  log.step('Adding scripts to package.json')
+  Object.keys(scripts).forEach(async key => {
+    await addScript(`${cwd}/package.json`, key, scripts[key])
+  })
+
+  log.step('Adding project files')
+  await copy(
+    path.join(__dirname, '../templates/gatsby'),
+    cwd,
+    { name },
+    (err: any) => {
+      if (err) throw err
+    }
+  )
+
+  log.step('Installing dependencies')
+  await execa('npm', ['i', '--save', ...dependencies], { cwd })
+  await execa('npm', ['i', '--save-dev', ...devDependencies], { cwd })
+
+  spinner.succeed()
 }
 
-export default createGatsby
+export default gatsby

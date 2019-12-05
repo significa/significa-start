@@ -1,8 +1,15 @@
 {
-  "extends": ["oclif", "oclif-typescript"],
+  "extends": ["oclif", "oclif-typescript", "plugin:react/recommended"],
   "rules": {
     "object-curly-spacing": "off",
     "indent": "off",
-    "unicorn/filename-case": "off"
+    "unicorn/filename-case": "off",
+    "no-process-exit": "off",
+    "unicorn/no-process-exit": "off",
+    "no-console": "off",
+    "no-extraneous-require": "off",
+    "node/no-extraneous-require": "off",
+    "node/no-missing-require": "off",
+    "unicorn/no-abusive-eslint-disable": "off"
   }
 }

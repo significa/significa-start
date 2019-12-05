@@ -1,6 +1,6 @@
 # {{name}}
 
-Gatsby project generated using [significa-start](https://github.com/Significa/significa-start)
+Next project generated using [significa-start](https://github.com/Significa/significa-start)
 
 # Available scripts
 
@@ -13,13 +13,19 @@ npm install
 ## Run project
 
 ```
-npm run develop
+npm run dev
 ```
 
 ## Build project
 
 ```
 npm run build
+```
+
+## Run build
+
+```
+npm run start
 ```
 
 ## Static type checking

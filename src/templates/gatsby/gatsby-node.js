@@ -4,4 +4,27 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  const config = getConfig()
+
+  if (config.resolve.plugins) {
+    config.resolve.plugins.push(new TsconfigPathsPlugin())
+  } else {
+    config.resolve.plugins = [new TsconfigPathsPlugin()]
+  }
+  config.module.rules.push({
+    test: /\.svg$/,
+    use: [
+      {
+        loader: '@svgr/webpack',
+        options: {
+          replaceAttrValues: { '#000': 'currentColor' },
+        },
+      },
+    ],
+  })
+
+  actions.replaceWebpackConfig(config)
+}

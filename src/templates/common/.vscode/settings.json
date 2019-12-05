@@ -1,0 +1,20 @@
+{
+  "eslint.validate": [
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
+  "editor.gotoLocation.multiple": "goto",
+  "typescript.preferences.importModuleSpecifier": "auto",
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
