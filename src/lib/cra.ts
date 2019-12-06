@@ -2,6 +2,7 @@ import execa from 'execa'
 import path from 'path'
 
 import log from '../utils/log'
+import copyDir from '../utils/copyDir'
 
 const dependencies: string[] = ['styled-components']
 const devDependencies: string[] = ['@types/styled-components']
@@ -22,14 +23,7 @@ async function cra(name: string) {
   await execa('rm', ['-rf', 'src'], { cwd })
 
   log.step('Adding project files')
-  const { stdout } = await execa('id', ['-u'])
-  await execa(
-    'rsync',
-    ['-a', '--update', `${path.join(__dirname, '../templates/cra')}/`, cwd],
-    {
-      uid: parseInt(stdout, 10),
-    }
-  )
+  await copyDir(`${path.join(__dirname, '../templates/cra')}`, cwd)
 
   log.step('Installing dependencies')
   await execa('npm', ['i', '--save', ...dependencies], { cwd })
