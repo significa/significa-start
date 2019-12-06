@@ -2,7 +2,7 @@
 
 Opinionated Significa's bootstrap CLI to start ReactJS projects based on Create React App, NextJS or GatsbyJS.
 
-`npx significa-start`
+`npx @significa/start`
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/significa-start.svg)](https://npmjs.org/package/significa-start)
@@ -22,12 +22,12 @@ The command-line interface expects the following arguments:
 
 - **Project name:** will be used on the folder name and configuration files;
 
-Eg: `npx significa-start cra hello-world`.
+Eg: `npx @significa/start cra hello-world`.
 
 ## Commands
 
-- Help: `significa-start --help`;
-- Version: `significa-start --version`;
+- Help: `npx @significa/start --help`;
+- Version: `npx @significa/start --version`;
 
 ## Common dependencies:
 
