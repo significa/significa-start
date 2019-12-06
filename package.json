@@ -1,29 +1,45 @@
 {
-  "name": "significa-start",
-  "description": "Bootstrap your React Projects",
+  "name": "@significa/start",
+  "description": "Opinionated Significa's bootstrap CLI to start React projects based on Create React App, NextJS or GatsbyJS.",
   "version": "0.0.1",
-  "author": "Pedro Brandão @pbrandone",
+  "author": "Significa Lda. <hello@significa.co>",
   "bin": {
     "significa-start": "./bin/run"
   },
-  "bugs": "https://github.com/significa/significa-start/issues",
+  "bugs": {
+    "url": "https://github.com/significa/significa-start/issues"
+  },
   "dependencies": {
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.13.3",
     "@oclif/plugin-help": "^2.2.1",
+    "chalk": "^3.0.0",
+    "cli-ux": "^5.3.3",
+    "execa": "^3.4.0",
+    "jsonfile": "^5.0.0",
+    "lodash": "^4.17.15",
+    "ora": "^4.0.3",
+    "path": "^0.12.7",
+    "recursive-readdir": "^2.2.2",
+    "tmp": "^0.1.0",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
-    "@oclif/test": "^1.2.5",
-    "@types/chai": "^4.2.5",
-    "@types/mocha": "^5.2.7",
+    "@significa/eslint-config": "0.0.6",
+    "@significa/prettier-config": "0.0.6",
+    "@significa/tsconfig-config": "0.0.6",
+    "@types/jsonfile": "^5.0.0",
+    "@types/lodash": "^4.14.149",
     "@types/node": "^10.17.6",
-    "chai": "^4.2.0",
+    "@types/react-dom": "^16.9.4",
+    "@types/recursive-readdir": "^2.2.0",
+    "@types/tmp": "^0.1.0",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
     "eslint-config-oclif-typescript": "^0.1.0",
-    "mocha": "^5.2.0",
+    "eslint-plugin-react": "^7.17.0",
     "nyc": "^14.1.1",
+    "react": "^16.12.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.2"
   },
@@ -43,11 +59,17 @@
   "oclif": {
     "bin": "significa-start"
   },
-  "repository": "significa/significa-start",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/significa/significa-start.git"
+  },
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\""
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "directories": {
+    "test": "test"
+  }
 }
