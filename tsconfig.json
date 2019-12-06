@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "declaration": true,
+    "declaration": false,
     "importHelpers": true,
     "module": "commonjs",
     "outDir": "lib",
@@ -10,5 +10,5 @@
     "esModuleInterop": true,
     "jsx": "react"
   },
-  "include": ["src/**/*", "@types/**/*"]
+  "include": ["src/lib/**/*", "src/utils/**/*", "@types/**/*"]
 }
