@@ -1,17 +1,10 @@
 {
-  "eslint.validate": [
-    {
-      "language": "typescript",
-      "autoFix": true
-    },
-    {
-      "language": "typescriptreact",
-      "autoFix": true
-    }
-  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
   "eslint.enable": true,
-  "eslint.autoFixOnSave": true,
-  "editor.gotoLocation.multiple": "goto",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.gotoLocation.multipleImplementations": "goto",
   "typescript.preferences.importModuleSpecifier": "auto",
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
