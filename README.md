@@ -1,13 +1,16 @@
 <a href="https://significa.co"><img src="https://user-images.githubusercontent.com/4838076/70076649-20d29b00-15f7-11ea-9379-e2fa1889a525.png" alt="logo" width="300px"></a>
 
-Opinionated Significa's bootstrap CLI to start ReactJS projects based on Create React App, NextJS or GatsbyJS.
-
-`npx @significa/start`
-
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/@significa/start.svg)](https://npmjs.org/package/significa/start)
 [![Downloads/week](https://img.shields.io/npm/dw/@significa/start.svg)](https://npmjs.org/package/@significa/start)
 [![License](https://img.shields.io/npm/l/@significa/start.svg)](https://github.com/significa/significa-start/blob/master/package.json)
+
+Opinionated Significa's bootstrap CLI to start ReactJS projects based on Create React App, NextJS or GatsbyJS.
+
+`npx @significa/start`
+
+![significa-significa-start](https://user-images.githubusercontent.com/17513388/71968657-41e16980-31fd-11ea-9dec-045d80dc7764.png)
+
 
 ## Usage
 
