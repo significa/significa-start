@@ -11,7 +11,6 @@ import common from './common'
 import log from './lib/log'
 import overrides from './lib/overrides'
 import initGit from './lib/git'
-import addSrc from './lib/addSrc'
 import parseProject from './lib/parseProject'
 
 const stacks = ['cra', 'gatsby', 'next'] as const
@@ -68,14 +67,6 @@ class SignificaStart extends Command {
         process.exit(1)
     }
 
-    // Apply src folder
-    log.info('Adding base src folder')
-    await addSrc(name, 'git@github.com:Significa/significa-src.git')
-
-    // Apply Significa UI
-    log.info('Adding base UI components')
-    await addSrc(name, 'git@github.com:Significa/significa-ui.git')
-
     // Add static type checking
     log.info('Adding static type checking and base configuration')
     await common(name)
@@ -87,24 +78,6 @@ class SignificaStart extends Command {
     // Apply variables
     log.info('Parse project')
     await parseProject(path.join(process.cwd(), name), { name })
-
-    // Tests
-    if (type !== 'cra') {
-      const shouldAddTests = await log.confirm('Add tests?')
-
-      if (shouldAddTests) {
-        // Add tests
-        // <here>
-      }
-    }
-
-    // Storybook
-    const shouldAddStorybook = await log.confirm('Add storybook?')
-
-    if (shouldAddStorybook) {
-      // Add storybook
-      // <here>
-    }
 
     // Git
     log.info('Git')
