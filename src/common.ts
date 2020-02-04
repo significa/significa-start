@@ -37,7 +37,7 @@ async function applyCommonConfig(name: string) {
   })
 
   log.step('Adding configuration files')
-  await copyDir(`${path.join(__dirname, '../templates/common')}`, cwd)
+  await copyDir(`${path.join(__dirname, './templates/common')}`, cwd)
 
   log.step('Installing missing dependencies')
   await execa('npm', ['i', '--save-dev', ...devDependencies], { cwd })

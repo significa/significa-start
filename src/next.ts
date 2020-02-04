@@ -41,7 +41,7 @@ async function next(name: string) {
   })
 
   log.step('Adding project files')
-  await copyDir(`${path.join(__dirname, '../templates/next')}`, cwd)
+  await copyDir(`${path.join(__dirname, './templates/next')}`, cwd)
 
   log.step('Installing dependencies')
   await execa('npm', ['i', '--save', ...dependencies], { cwd })
