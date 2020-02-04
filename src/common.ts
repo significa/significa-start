@@ -1,9 +1,9 @@
 import execa from 'execa'
 import path from 'path'
 
-import addScript from '../utils/add-script'
-import log from '../utils/log'
-import copyDir from '../utils/copyDir'
+import addScript from './lib/addScript'
+import log from './lib/log'
+import copyDir from './lib/copyDir'
 
 const scripts: { [key: string]: string } = {
   format: 'npm run prettier -- --write',

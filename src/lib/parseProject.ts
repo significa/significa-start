@@ -4,7 +4,7 @@ import recursive from 'recursive-readdir'
 import execa from 'execa'
 import path from 'path'
 
-import log from '../utils/log'
+import log from './log'
 
 type Vars = { [key: string]: string }
 

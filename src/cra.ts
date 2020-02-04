@@ -1,8 +1,8 @@
 import execa from 'execa'
 import path from 'path'
 
-import log from '../utils/log'
-import copyDir from '../utils/copyDir'
+import log from './lib/log'
+import copyDir from './lib/copyDir'
 
 const dependencies: string[] = ['styled-components']
 const devDependencies: string[] = ['@types/styled-components']

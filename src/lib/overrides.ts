@@ -1,6 +1,7 @@
 import path from 'path'
-import log from '../utils/log'
-import copyDir from '../utils/copyDir'
+
+import log from './log'
+import copyDir from './copyDir'
 
 async function overrides(name: string, type: string) {
   const cwd = path.join(process.cwd(), name)
