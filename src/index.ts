@@ -9,7 +9,6 @@ import cra from './cra'
 import common from './common'
 
 import log from './lib/log'
-import overrides from './lib/overrides'
 import initGit from './lib/git'
 import parseProject from './lib/parseProject'
 
@@ -70,10 +69,6 @@ class SignificaStart extends Command {
     // Add static type checking
     log.info('Adding static type checking and base configuration')
     await common(name)
-
-    // Apply overrides
-    log.info('Applying project overrides')
-    await overrides(name, type)
 
     // Apply variables
     log.info('Parse project')

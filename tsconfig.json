@@ -11,5 +11,5 @@
     "jsx": "react"
   },
   "include": ["src/**/*", "@types/**/*"],
-  "exclude": ["src/templates/**/*", "src/overrides/**/*"]
+  "exclude": ["src/templates/**/*"]
 }
