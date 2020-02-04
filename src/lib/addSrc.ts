@@ -2,9 +2,9 @@ import execa from 'execa'
 import path from 'path'
 import tmp from 'tmp'
 
-import log from '../utils/log'
-import installMissingDeps from '../utils/installMissingDeps'
-import copyDir from '../utils/copyDir'
+import log from './log'
+import installMissingDeps from './installMissingDeps'
+import copyDir from './copyDir'
 
 async function addSrc(name: string, repo: string) {
   const cwd = path.join(process.cwd(), name)

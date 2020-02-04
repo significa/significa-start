@@ -1,9 +1,9 @@
 import execa from 'execa'
 import path from 'path'
 
-import addScript from '../utils/add-script'
-import log from '../utils/log'
-import copyDir from '../utils/copyDir'
+import addScript from './lib/addScript'
+import log from './lib/log'
+import copyDir from './lib/copyDir'
 
 const scripts: { [key: string]: string } = {
   format: 'npm run prettier -- --write',
@@ -37,7 +37,7 @@ async function applyCommonConfig(name: string) {
   })
 
   log.step('Adding configuration files')
-  await copyDir(`${path.join(__dirname, '../templates/common')}`, cwd)
+  await copyDir(`${path.join(__dirname, './templates/common')}`, cwd)
 
   log.step('Installing missing dependencies')
   await execa('npm', ['i', '--save-dev', ...devDependencies], { cwd })

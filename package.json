@@ -1,7 +1,7 @@
 {
   "name": "@significa/start",
   "description": "Opinionated Significa's bootstrap CLI to start React projects based on Create React App, NextJS or GatsbyJS.",
-  "version": "0.0.5",
+  "version": "0.1.2",
   "author": "Significa Lda. <hello@significa.co>",
   "bin": {
     "significa-start": "./bin/run"
@@ -65,7 +65,7 @@
   },
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
-    "prepack": "rm -rf lib && tsc -b && cp -r src/templates lib && cp -r src/overrides lib",
+    "prepack": "rm -rf lib && tsc -b && cp -r src/templates lib",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\""
   },
   "types": "lib/index.d.ts",

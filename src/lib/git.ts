@@ -1,6 +1,7 @@
 import execa from 'execa'
 import path from 'path'
-import log from '../utils/log'
+
+import log from './log'
 
 async function initGit(name: string) {
   const cwd = path.join(process.cwd(), name)
