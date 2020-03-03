@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: process.env.PATH_PREFIX,
   siteMetadata: {
     title: '{{= name }}',
     description:
@@ -24,10 +25,19 @@ module.exports = {
         name: '{{= name }}',
         short_name: '{{= name }}',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#000000',
+        theme_color: '#000000',
         display: 'minimal-ui',
         icon: 'src/images/icon.png', // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-s3',
+      options: {
+        bucketName: 'BUCKET_NAME',
+        region: 'eu-west-1',
+        protocol: 'https',
+        hostname: 'DOMAIN.COM',
       },
     },
   ],

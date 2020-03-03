@@ -1,0 +1,6 @@
+CimpleFinder:
+  component: serverless-next.js
+
+  inputs:
+    domain: ['SUBDOMAIN', 'DOMAIN']
+    bucketName: BUCKET_NAME
