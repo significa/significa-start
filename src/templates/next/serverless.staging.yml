@@ -1,4 +1,4 @@
-CimpleFinder:
+WebApp:
   component: serverless-next.js
 
   inputs:
