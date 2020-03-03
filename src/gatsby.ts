@@ -10,6 +10,7 @@ const scripts: { [key: string]: string } = {
   develop: 'gatsby develop --host 0.0.0.0',
   dev: 'npm run develop',
   start: 'npm run develop',
+  deploy: 'gatsby-plugin-s3 deploy --yes',
 }
 
 const dependencies: string[] = [
@@ -23,12 +24,6 @@ const dependencies: string[] = [
   // needed
   'react-helmet',
   'gatsby-image',
-  'gatsby-plugin-react-helmet',
-  'gatsby-source-filesystem',
-  'gatsby-transformer-sharp',
-  'gatsby-plugin-sharp',
-  'gatsby-plugin-manifest',
-  'gatsby-plugin-styled-components',
 ]
 
 const devDependencies: string[] = [
@@ -37,6 +32,13 @@ const devDependencies: string[] = [
   '@types/styled-components',
   '@svgr/webpack',
   'tsconfig-paths-webpack-plugin',
+  'gatsby-plugin-s3',
+  'gatsby-plugin-react-helmet',
+  'gatsby-source-filesystem',
+  'gatsby-transformer-sharp',
+  'gatsby-plugin-sharp',
+  'gatsby-plugin-manifest',
+  'gatsby-plugin-styled-components',
 ]
 
 async function gatsby(name: string) {
