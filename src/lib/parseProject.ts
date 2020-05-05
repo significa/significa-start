@@ -1,19 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 
-import lodash from 'lodash'
 import recursive from 'recursive-readdir'
 import execa from 'execa'
 
 import log from './log'
 
 type Vars = { [key: string]: string }
-
-lodash.templateSettings = {
-  evaluate: /{{([\s\S]+?)}}/g,
-  interpolate: /{{=([\s\S]+?)}}/g,
-  escape: /{{-([\s\S]+?)}}/g,
-}
 
 /**
  * Template and override files can include block that are removed from the project:
@@ -23,7 +16,21 @@ lodash.templateSettings = {
  * more content
  * // end-remove
  */
+
+/**
+ * Simillarly, we can replace variables as such: {{= var }}
+ */
 const removeBlockRegex = /(\/\/\s{0,1}start-remove)(.|\n){0,}(\/\/\s{0,1}end-remove)/gim
+
+const template = (content: string, params: Vars) => {
+  let result = content
+
+  Object.keys(params).forEach((key) => {
+    result = result.replace(/{{=([\s\S]+?)}}/g, params[key])
+  })
+
+  return result
+}
 
 async function parseProject(projectPath: string, vars: Vars) {
   const spinner = log.step(
@@ -44,9 +51,9 @@ async function parseProject(projectPath: string, vars: Vars) {
 
   files.forEach(async (file) => {
     const content = await fs.readFileSync(file, 'utf8')
-    const template = lodash.template(content)
-    const newContent = template(vars).replace(removeBlockRegex, '')
-    await fs.writeFileSync(file, newContent)
+    const newContent = template(content, vars)
+    fs.writeFileSync(file, newContent.replace(removeBlockRegex, ''))
+
     const filename = path.basename(file)
     const fileDir = path.dirname(file)
 
