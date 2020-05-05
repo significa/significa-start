@@ -1,17 +1,19 @@
-import execa from 'execa'
 import path from 'path'
+
+import execa from 'execa'
 
 import addScript from './lib/addScript'
 import log from './lib/log'
 import copyDir from './lib/copyDir'
 
 const scripts: { [key: string]: string } = {
-  format: 'npm run prettier -- --write',
+  test: 'jest',
   lint: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
-  prettier: 'prettier "./src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)"',
-  'validate:prettier': 'npm run prettier -- --check',
-  'validate:ts': 'tsc',
-  validate: 'npm run lint && npm run validate:prettier && npm run validate:ts',
+  format: 'prettier "./src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)"',
+  'format:write': 'npm run prettier -- --write',
+  'validate:format': 'npm run prettier -- --check',
+  'validate:build': 'tsc',
+  validate: 'npm run lint && npm run validate:format && npm run validate:build',
 }
 
 const devDependencies: string[] = [
@@ -21,26 +23,31 @@ const devDependencies: string[] = [
   //
   'eslint',
   'prettier',
-  'husky',
-  'lint-staged',
   '@commitlint/cli',
   '@commitlint/config-conventional',
-  'cz-conventional-changelog',
+  'husky',
+  'lint-staged',
+  //
+  'jest',
+  '@types/jest',
 ]
 
 async function applyCommonConfig(name: string) {
   const cwd = path.join(process.cwd(), name)
 
   const spinner = log.step('Adding scripts to package.json')
-  Object.keys(scripts).forEach(async key => {
+  Object.keys(scripts).forEach(async (key) => {
     await addScript(`${cwd}/package.json`, key, scripts[key])
   })
 
   log.step('Adding configuration files')
   await copyDir(`${path.join(__dirname, './templates/common')}`, cwd)
 
-  log.step('Installing missing dependencies')
-  await execa('npm', ['i', '--save-dev', ...devDependencies], { cwd })
+  log.step('Add common dependencies')
+
+  await execa('npx', ['add-dependencies', '--save-dev', ...devDependencies], {
+    cwd,
+  })
 
   spinner.succeed()
 }

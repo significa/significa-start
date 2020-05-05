@@ -1,5 +1,6 @@
-import execa from 'execa'
 import path from 'path'
+
+import execa from 'execa'
 import tmp from 'tmp'
 
 import log from './log'

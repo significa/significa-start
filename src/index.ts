@@ -1,13 +1,14 @@
-import { Command, flags } from '@oclif/command'
 import fs from 'fs'
-import chalk from 'chalk'
 import path from 'path'
+
+import { Command, flags } from '@oclif/command'
+import execa from 'execa'
+import chalk from 'chalk'
 
 import gatsby from './gatsby'
 import next from './next'
 import cra from './cra'
 import common from './common'
-
 import log from './lib/log'
 import initGit from './lib/git'
 import parseProject from './lib/parseProject'
@@ -73,6 +74,12 @@ class SignificaStart extends Command {
     // Apply variables
     log.info('Parse project')
     await parseProject(path.join(process.cwd(), name), { name })
+
+    // Install dependencies
+    log.info('Install')
+    const installSpinner = log.step('Installing dependencies')
+    await execa('npm', ['install'], { cwd: name })
+    installSpinner.succeed()
 
     // Git
     log.info('Git')
