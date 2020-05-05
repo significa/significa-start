@@ -76,8 +76,10 @@ class SignificaStart extends Command {
     await parseProject(path.join(process.cwd(), name), { name })
 
     // Install dependencies
-    log.info('Install dependencies')
+    log.info('Install')
+    const installSpinner = log.step('Installing dependencies')
     await execa('npm', ['install'], { cwd: name })
+    installSpinner.succeed()
 
     // Git
     log.info('Git')
