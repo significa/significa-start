@@ -26,8 +26,10 @@ async function cra(name: string) {
   await copyDir(`${path.join(__dirname, './templates/cra')}`, cwd)
 
   log.step('Installing dependencies')
-  await execa('npm', ['i', '--save', ...dependencies], { cwd })
-  await execa('npm', ['i', '--save-dev', ...devDependencies], { cwd })
+  await execa('npx', ['add-dependencies', '--save', ...dependencies], { cwd })
+  await execa('npx', ['add-dependencies', '--save-dev', ...devDependencies], {
+    cwd,
+  })
 
   spinner.succeed()
 }

@@ -1,4 +1,5 @@
 import { Command, flags } from '@oclif/command'
+import execa from 'execa'
 import fs from 'fs'
 import chalk from 'chalk'
 import path from 'path'
@@ -73,6 +74,10 @@ class SignificaStart extends Command {
     // Apply variables
     log.info('Parse project')
     await parseProject(path.join(process.cwd(), name), { name })
+
+    // Install dependencies
+    log.info('Install dependencies')
+    await execa('npm', ['install'], { cwd: name })
 
     // Git
     log.info('Git')
