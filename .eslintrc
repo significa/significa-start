@@ -1,5 +1,10 @@
 {
-  "extends": ["oclif", "oclif-typescript", "plugin:react/recommended"],
+  "extends": [
+    "oclif",
+    "oclif-typescript",
+    "plugin:react/recommended",
+    "@significa/eslint-config"
+  ],
   "rules": {
     "object-curly-spacing": "off",
     "indent": "off",

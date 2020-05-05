@@ -1,5 +1,6 @@
-import execa from 'execa'
 import path from 'path'
+
+import execa from 'execa'
 
 import addScript from './lib/addScript'
 import log from './lib/log'
@@ -49,7 +50,7 @@ async function gatsby(name: string) {
   await execa('npm', ['init', '-y'], { cwd })
 
   log.step('Adding scripts to package.json')
-  Object.keys(scripts).forEach(async key => {
+  Object.keys(scripts).forEach(async (key) => {
     await addScript(`${cwd}/package.json`, key, scripts[key])
   })
 

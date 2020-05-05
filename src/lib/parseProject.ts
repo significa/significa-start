@@ -1,8 +1,9 @@
-import lodash from 'lodash'
 import fs from 'fs'
+import path from 'path'
+
+import lodash from 'lodash'
 import recursive from 'recursive-readdir'
 import execa from 'execa'
-import path from 'path'
 
 import log from './log'
 
@@ -36,12 +37,12 @@ async function parseProject(projectPath: string, vars: Vars) {
     '*.jpg',
     '*.ico',
     '.DS_Store',
-    file => {
+    (file) => {
       return file.indexOf('node_modules') !== -1
     },
   ])
 
-  files.forEach(async file => {
+  files.forEach(async (file) => {
     const content = await fs.readFileSync(file, 'utf8')
     const template = lodash.template(content)
     const newContent = template(vars).replace(removeBlockRegex, '')

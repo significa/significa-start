@@ -1,5 +1,6 @@
-import execa from 'execa'
 import path from 'path'
+
+import execa from 'execa'
 
 import addScript from './lib/addScript'
 import log from './lib/log'

@@ -1,14 +1,14 @@
+import fs from 'fs'
+import path from 'path'
+
 import { Command, flags } from '@oclif/command'
 import execa from 'execa'
-import fs from 'fs'
 import chalk from 'chalk'
-import path from 'path'
 
 import gatsby from './gatsby'
 import next from './next'
 import cra from './cra'
 import common from './common'
-
 import log from './lib/log'
 import initGit from './lib/git'
 import parseProject from './lib/parseProject'
