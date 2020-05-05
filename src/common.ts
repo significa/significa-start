@@ -7,6 +7,7 @@ import log from './lib/log'
 import copyDir from './lib/copyDir'
 
 const scripts: { [key: string]: string } = {
+  test: 'jest',
   lint: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
   format: 'prettier "./src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)"',
   'format:write': 'npm run prettier -- --write',
@@ -26,6 +27,9 @@ const devDependencies: string[] = [
   '@commitlint/config-conventional',
   'husky',
   'lint-staged',
+  //
+  'jest',
+  '@types/jest',
 ]
 
 async function applyCommonConfig(name: string) {
