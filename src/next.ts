@@ -19,7 +19,6 @@ const dependencies: string[] = [
   'react-dom',
   'next',
   'styled-components',
-  'dotenv',
 ]
 
 const devDependencies: string[] = [
@@ -28,7 +27,6 @@ const devDependencies: string[] = [
   '@types/node',
   '@types/styled-components',
   '@svgr/webpack',
-  'tsconfig-paths-webpack-plugin',
   '@serverless/core',
   '@serverless/template',
   'serverless',
