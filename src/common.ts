@@ -10,8 +10,8 @@ const scripts: { [key: string]: string } = {
   test: 'jest',
   lint: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
   format: 'prettier "./src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)"',
-  'format:write': 'npm run prettier -- --write',
-  'validate:format': 'npm run prettier -- --check',
+  'format:write': 'npm run format -- --write',
+  'validate:format': 'npm run format -- --check',
   'validate:build': 'tsc',
   validate: 'npm run lint && npm run validate:format && npm run validate:build',
 }

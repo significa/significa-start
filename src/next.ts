@@ -24,6 +24,7 @@ const dependencies: string[] = [
 const devDependencies: string[] = [
   'typescript',
   '@types/react',
+  '@types/react-dom',
   '@types/node',
   '@types/styled-components',
   '@svgr/webpack',
