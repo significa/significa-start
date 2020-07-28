@@ -11,6 +11,7 @@ import cra from './cra'
 import common from './common'
 import log from './lib/log'
 import initGit from './lib/git'
+import commit from './lib/commit'
 import parseProject from './lib/parseProject'
 
 const stacks = ['cra', 'gatsby', 'next'] as const
@@ -75,15 +76,19 @@ class SignificaStart extends Command {
     log.info('Parse project')
     await parseProject(path.join(process.cwd(), name), { name })
 
+    // Git
+    log.info('Git')
+    await initGit(name)
+
     // Install dependencies
     log.info('Install')
     const installSpinner = log.step('Installing dependencies')
     await execa('npm', ['install'], { cwd: name })
     installSpinner.succeed()
 
-    // Git
-    log.info('Git')
-    await initGit(name)
+    // Commit dependencies
+    log.info('Commit')
+    await commit(name)
 
     log.success(
       `Project created! \n\n  Type in ${chalk.blue(
