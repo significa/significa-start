@@ -41,34 +41,6 @@ class SignificaStart extends Command {
     { name: 'name', required: false },
   ]
 
-  questions = [
-    {
-      message: 'Which stack would you like to use?',
-      type: 'list',
-      name: 'type',
-      choices: [
-        {
-          name: 'Create React App',
-          value: 'cra',
-        },
-        {
-          name: 'Nextjs',
-          value: 'next',
-        },
-        {
-          name: 'Gatsby',
-          value: 'gatby',
-        },
-      ],
-    },
-    {
-      message: "What is the project's name?",
-      type: 'input',
-      name: 'name',
-      default: 'hello-world',
-    },
-  ]
-
   async run() {
     log.info(
       `\n${chalk.yellow(
@@ -80,12 +52,40 @@ class SignificaStart extends Command {
       SignificaStart
     )
 
-    let type = args.type
-    let name = args.name
+    const type =
+      args.type ||
+      (
+        await inquirer.prompt({
+          message: 'Which stack would you like to use?',
+          type: 'list',
+          name: 'type',
+          choices: [
+            {
+              name: 'NextJS',
+              value: 'next',
+            },
+            {
+              name: 'Gatsby',
+              value: 'gatsby',
+            },
+            {
+              name: 'Create React App',
+              value: 'cra',
+            },
+          ],
+        })
+      ).type
 
-    if (!name && !type) {
-      ;({ type, name } = await inquirer.prompt(this.questions))
-    }
+    const name =
+      args.name ||
+      (
+        await inquirer.prompt({
+          message: "What's the name of the project?",
+          type: 'input',
+          name: 'name',
+          default: 'hello-world',
+        })
+      ).name
 
     if (fs.existsSync(name)) {
       log.error('Folder already exists')
