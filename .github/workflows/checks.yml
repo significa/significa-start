@@ -1,0 +1,29 @@
+name: Checks
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/package-lock
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+          
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm run test
