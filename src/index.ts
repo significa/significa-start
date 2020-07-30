@@ -4,6 +4,8 @@ import path from 'path'
 import { Command, flags } from '@oclif/command'
 import execa from 'execa'
 import chalk from 'chalk'
+import figlet from 'figlet'
+import inquirer from 'inquirer'
 
 import gatsby from './gatsby'
 import next from './next'
@@ -33,16 +35,57 @@ class SignificaStart extends Command {
   static args = [
     {
       name: 'type',
-      required: true,
+      required: false,
       options: (stacks as unknown) as string[],
     },
-    { name: 'name', required: true },
+    { name: 'name', required: false },
   ]
 
   async run() {
-    const {
-      args: { name, type },
-    }: { args: { name: string; type: Stacks } } = this.parse(SignificaStart)
+    log.info(
+      `\n${chalk.yellow(
+        figlet.textSync('significa-start', { horizontalLayout: 'default' })
+      )}`
+    )
+
+    const { args }: { args: { type: Stacks; name: string } } = this.parse(
+      SignificaStart
+    )
+
+    const type =
+      args.type ||
+      (
+        await inquirer.prompt({
+          message: 'Which stack would you like to use?',
+          type: 'list',
+          name: 'type',
+          choices: [
+            {
+              name: 'NextJS',
+              value: 'next',
+            },
+            {
+              name: 'Gatsby',
+              value: 'gatsby',
+            },
+            {
+              name: 'Create React App',
+              value: 'cra',
+            },
+          ],
+        })
+      ).type
+
+    const name =
+      args.name ||
+      (
+        await inquirer.prompt({
+          message: "What's the name of the project?",
+          type: 'input',
+          name: 'name',
+          default: 'hello-world',
+        })
+      ).name
 
     if (fs.existsSync(name)) {
       log.error('Folder already exists')
