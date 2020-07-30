@@ -15,6 +15,9 @@ module.exports = {
         use: [
           {
             loader: '@svgr/webpack',
+            options: {
+              replaceAttrValues: { '#000': 'currentColor' },
+            },
           },
           'url-loader',
         ],
