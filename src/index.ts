@@ -10,8 +10,7 @@ import next from './next'
 import cra from './cra'
 import common from './common'
 import log from './lib/log'
-import initGit from './lib/git'
-import commit from './lib/commit'
+import { gitInit, gitCommit } from './lib/git'
 import parseProject from './lib/parseProject'
 
 const stacks = ['cra', 'gatsby', 'next'] as const
@@ -78,7 +77,7 @@ class SignificaStart extends Command {
 
     // Git
     log.info('Git')
-    await initGit(name)
+    await gitInit(name)
 
     // Install dependencies
     log.info('Install')
@@ -88,7 +87,7 @@ class SignificaStart extends Command {
 
     // Commit dependencies
     log.info('Commit')
-    await commit(name)
+    await gitCommit(name, 'Initial files')
 
     log.success(
       `Project created! \n\n  Type in ${chalk.blue(
