@@ -9,25 +9,22 @@ Opinionated Significa's bootstrap CLI to start ReactJS projects based on Create 
 
 `npx @significa/start`
 
-![significa-significa-start](https://user-images.githubusercontent.com/17513388/71968657-41e16980-31fd-11ea-9dec-045d80dc7764.png)
+![significa-significa-start](https://user-images.githubusercontent.com/4838076/88907578-b25edf00-d250-11ea-92c8-3e9845e08660.png)
 
-
-## Usage
-
-The command-line interface expects the following arguments:
+You can also skip the prompt and give it the configuration you want:
 
 - **Project type:** may be one of these options;
-
   - `cra`: Create React App from Facebook;
   - `next`: Next.js from Zeit;
   - `gatsby`: GatsbyJS;
-
 - **Project name:** will be used on the folder name and configuration files;
 
 Eg: `npx @significa/start cra hello-world`.
 
 ## Commands
 
+- Regular: `npx @significa/start`;
+- Shortcut: `npx @significa/start [project] [name]`;
 - Help: `npx @significa/start --help`;
 - Version: `npx @significa/start --version`;
 
