@@ -43,7 +43,6 @@
     "eslint-config-oclif-typescript": "^0.1.0",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^4.2.5",
-    "nyc": "^15.0.1",
     "react": "^16.13.1",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
@@ -71,7 +70,7 @@
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && cp -r src/templates lib",
-    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\""
+    "test": "echo \"No tests!\" && exit 0"
   },
   "types": "lib/index.d.ts",
   "directories": {
