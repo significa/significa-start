@@ -32,6 +32,7 @@ const devDependencies: string[] = [
   '@serverless/template',
   'serverless',
   'serverless-next.js',
+  'url-loader'
 ]
 
 async function next(name: string) {
