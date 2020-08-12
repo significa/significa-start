@@ -5,7 +5,7 @@ import { StyledLayout } from 'common/UI'
 
 import reactImage from './react-logo.svg'
 
-const App = () => {
+export const App = () => {
   return (
     <StyledLayout>
       <StyledHeading>Hello world!</StyledHeading>
@@ -13,8 +13,6 @@ const App = () => {
     </StyledLayout>
   )
 }
-
-export default App
 
 const StyledHeading = styled.h1`
   color: #444;
