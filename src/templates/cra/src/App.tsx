@@ -9,7 +9,7 @@ const App = () => {
   return (
     <StyledLayout>
       <StyledHeading>Hello world!</StyledHeading>
-      <StyledImage src={reactImage} alt="React Significa" />
+      <StyledImage src={reactImage} alt="React" />
     </StyledLayout>
   )
 }
