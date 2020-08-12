@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { StyledLayout } from 'common/UI'
 
-const App = () => {
+const IndexPage = () => {
   return (
     <StyledLayout>
       <StyledHeading>Hello world!</StyledHeading>
@@ -11,7 +11,7 @@ const App = () => {
   )
 }
 
-export default App
+export default IndexPage
 
 const StyledHeading = styled.h1`
   color: #444;
