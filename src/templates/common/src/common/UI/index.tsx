@@ -1,1 +1,1 @@
-export { default as StyledLayout } from './StyledLayout'
+export { StyledLayout } from './StyledLayout'
