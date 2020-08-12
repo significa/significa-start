@@ -4,13 +4,15 @@ import path from 'path'
 import { Command, flags } from '@oclif/command'
 import execa from 'execa'
 import chalk from 'chalk'
+import figlet from 'figlet'
+import inquirer from 'inquirer'
 
 import gatsby from './gatsby'
 import next from './next'
 import cra from './cra'
 import common from './common'
 import log from './lib/log'
-import initGit from './lib/git'
+import { gitInit, gitCommit } from './lib/git'
 import parseProject from './lib/parseProject'
 
 const stacks = ['cra', 'gatsby', 'next'] as const
@@ -33,16 +35,57 @@ class SignificaStart extends Command {
   static args = [
     {
       name: 'type',
-      required: true,
+      required: false,
       options: (stacks as unknown) as string[],
     },
-    { name: 'name', required: true },
+    { name: 'name', required: false },
   ]
 
   async run() {
-    const {
-      args: { name, type },
-    }: { args: { name: string; type: Stacks } } = this.parse(SignificaStart)
+    log.info(
+      `\n${chalk.yellow(
+        figlet.textSync('significa-start', { horizontalLayout: 'default' })
+      )}`
+    )
+
+    const { args }: { args: { type: Stacks; name: string } } = this.parse(
+      SignificaStart
+    )
+
+    const type =
+      args.type ||
+      (
+        await inquirer.prompt({
+          message: 'Which stack would you like to use?',
+          type: 'list',
+          name: 'type',
+          choices: [
+            {
+              name: 'NextJS',
+              value: 'next',
+            },
+            {
+              name: 'Gatsby',
+              value: 'gatsby',
+            },
+            {
+              name: 'Create React App',
+              value: 'cra',
+            },
+          ],
+        })
+      ).type
+
+    const name =
+      args.name ||
+      (
+        await inquirer.prompt({
+          message: "What's the name of the project?",
+          type: 'input',
+          name: 'name',
+          default: 'hello-world',
+        })
+      ).name
 
     if (fs.existsSync(name)) {
       log.error('Folder already exists')
@@ -75,15 +118,19 @@ class SignificaStart extends Command {
     log.info('Parse project')
     await parseProject(path.join(process.cwd(), name), { name })
 
+    // Git
+    log.info('Git')
+    await gitInit(name)
+
     // Install dependencies
     log.info('Install')
     const installSpinner = log.step('Installing dependencies')
     await execa('npm', ['install'], { cwd: name })
     installSpinner.succeed()
 
-    // Git
-    log.info('Git')
-    await initGit(name)
+    // Commit dependencies
+    log.info('Commit')
+    await gitCommit(name, 'Initial files')
 
     log.success(
       `Project created! \n\n  Type in ${chalk.blue(

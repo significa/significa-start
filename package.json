@@ -1,7 +1,7 @@
 {
   "name": "@significa/start",
   "description": "Opinionated Significa's bootstrap CLI to start React projects based on Create React App, NextJS or GatsbyJS.",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "author": "Significa Lda. <hello@significa.co>",
   "bin": {
     "significa-start": "./bin/run"
@@ -13,9 +13,13 @@
     "@oclif/command": "^1.6.1",
     "@oclif/config": "^1.15.1",
     "@oclif/plugin-help": "^3.0.0",
+    "@types/figlet": "^1.2.0",
+    "@types/inquirer": "^6.5.0",
     "chalk": "^4.0.0",
     "cli-ux": "^5.4.5",
     "execa": "^4.0.0",
+    "figlet": "^1.5.0",
+    "inquirer": "^7.3.2",
     "jsonfile": "^6.0.1",
     "ora": "^4.0.4",
     "path": "^0.12.7",
@@ -24,6 +28,13 @@
     "tslib": "^1.11.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.0.7",
+    "@semantic-release/npm": "^7.0.5",
+    "@semantic-release/release-notes-generator": "^9.0.1",
     "@significa/eslint-config": "0.0.17",
     "@significa/prettier-config": "0.0.17",
     "@significa/tsconfig-config": "0.0.17",
@@ -36,7 +47,7 @@
     "eslint-config-oclif": "^3.1.0",
     "eslint-config-oclif-typescript": "^0.1.0",
     "eslint-plugin-react": "^7.19.0",
-    "nyc": "^15.0.1",
+    "husky": "^4.2.5",
     "react": "^16.13.1",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
@@ -64,7 +75,7 @@
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && cp -r src/templates lib",
-    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\""
+    "test": "echo \"No tests!\" && exit 0"
   },
   "types": "lib/index.d.ts",
   "directories": {
