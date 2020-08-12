@@ -1,17 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const IndexPage = () => {
+import { StyledLayout } from 'common/UI'
+
+const App = () => {
   return (
-    <StyledWrapper>
-      <h1>Hello world!</h1>
-    </StyledWrapper>
+    <StyledLayout>
+      <StyledHeading>Hello world!</StyledHeading>
+    </StyledLayout>
   )
 }
 
-export default IndexPage
+export default App
 
-const StyledWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+const StyledHeading = styled.h1`
+  color: #444;
 `

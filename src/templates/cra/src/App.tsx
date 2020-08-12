@@ -1,24 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { StyledLayout } from 'common/UI'
+
 import reactImage from './react-logo.svg'
 
 const App = () => {
   return (
-    <StyledWrapper>
-      <h1>Hello world!</h1>
+    <StyledLayout>
+      <StyledHeading>Hello world!</StyledHeading>
       <StyledImage src={reactImage} alt="React Significa" />
-    </StyledWrapper>
+    </StyledLayout>
   )
 }
 
 export default App
 
-const StyledWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+const StyledHeading = styled.h1`
+  color: #444;
 `
 
 const StyledImage = styled.img`
