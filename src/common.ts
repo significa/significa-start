@@ -21,8 +21,6 @@ const devDependencies: string[] = [
   '@significa/prettier-config',
   '@significa/tsconfig-config',
   //
-  'eslint',
-  'prettier',
   '@commitlint/cli',
   '@commitlint/config-conventional',
   'husky',
