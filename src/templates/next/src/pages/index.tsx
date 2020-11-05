@@ -3,13 +3,13 @@ import styled from 'styled-components'
 
 import { StyledLayout } from 'common/UI'
 
-import reactImage from './react-logo.svg'
+import ImageSvg from './react-logo.svg'
 
-const IndexPage = () => {
+const IndexPage: React.FC = () => {
   return (
     <StyledLayout>
+      <StyledImageSvg />
       <StyledHeading>Hello world!</StyledHeading>
-      <StyledImage src={reactImage} alt="React" />
     </StyledLayout>
   )
 }
@@ -20,7 +20,7 @@ const StyledHeading = styled.h1`
   color: #444;
 `
 
-const StyledImage = styled.img`
-  height: 300px;
+const StyledImageSvg = styled(ImageSvg)`
   width: 300px;
+  height: 300px;
 `
