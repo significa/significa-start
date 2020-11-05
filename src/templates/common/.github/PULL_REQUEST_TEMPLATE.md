@@ -17,15 +17,14 @@ Closes #(issue)
 <!---
 #### Pull request checklist:
 
-- [ ] Properly title
+- [ ] Proper title
 - [ ] Detailed description
-- [ ] Closes issue related
-- [ ] Assign to a Reviewer
-- [ ] Assign to an Assignee
+- [ ] Closes related issue
+- [ ] Added a Reviewer
 
 #### Code checklist:
 
-- [ ] My code follows the style guidelines of this project
+- [ ] My code follows this project's style guidelines
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] I have solved all conflicts 
