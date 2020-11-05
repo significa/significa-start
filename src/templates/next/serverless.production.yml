@@ -1,9 +1,0 @@
-WebApp:
-  component: serverless-next.js
-
-  inputs:
-    domain: 'DOMAIN_NAME'
-    bucketName: BUCKET_NAME
-    build:
-      env:
-        STAGE: production

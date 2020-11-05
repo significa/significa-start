@@ -40,6 +40,11 @@ Eg: `npx @significa/start cra hello-world`.
 - [Significa-src](https://github.com/Significa/significa-src);
 - [Significa-ui](https://github.com/Significa/significa-ui);
 
+## Running locally
+
+Run `npm link` in the directory.
+Use the CLI as `significa-start` anywhere.
+
 ## License
 
 [MIT](https://github.com/Significa/significa-start/blob/master/LICENSE)

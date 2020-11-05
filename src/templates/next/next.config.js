@@ -1,28 +1,16 @@
 module.exports = {
-  target: 'serverless',
   webpack(config) {
-    config.module.rules.push(
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            replaceAttrValues: { '#000': 'currentColor' },
           },
-        ],
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: '@svgr/webpack',
-            options: {
-              replaceAttrValues: { '#000': 'currentColor' },
-            },
-          },
-          'url-loader',
-        ],
-      }
-    )
+        },
+      ],
+    })
 
     return config
   },

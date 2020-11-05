@@ -10,8 +10,6 @@ const scripts: { [key: string]: string } = {
   dev: 'next dev',
   build: 'next build',
   start: 'next start',
-  'deploy:staging': 'serverless --stage=staging',
-  'deploy:production': 'serverless --stage=production',
 }
 
 const dependencies: string[] = [
@@ -28,11 +26,6 @@ const devDependencies: string[] = [
   '@types/node',
   '@types/styled-components',
   '@svgr/webpack',
-  '@serverless/core',
-  '@serverless/template',
-  'serverless',
-  'serverless-next.js',
-  'url-loader',
 ]
 
 async function next(name: string) {

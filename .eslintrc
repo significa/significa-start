@@ -6,6 +6,8 @@
     "@significa/eslint-config"
   ],
   "rules": {
+    "import/default": "off",
+    "import/no-named-as-default-member": "off",
     "object-curly-spacing": "off",
     "indent": "off",
     "unicorn/filename-case": "off",
