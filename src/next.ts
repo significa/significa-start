@@ -26,7 +26,6 @@ const devDependencies: string[] = [
   '@types/node',
   '@types/styled-components',
   '@svgr/webpack',
-  'url-loader',
 ]
 
 async function next(name: string) {
