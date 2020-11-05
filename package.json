@@ -4,7 +4,7 @@
   "version": "0.7.2",
   "author": "Significa Lda. <hello@significa.co>",
   "bin": {
-    "significa-start": "./bin/run"
+    "significa-start": "bin/run"
   },
   "bugs": {
     "url": "https://github.com/significa/significa-start/issues"
