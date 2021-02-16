@@ -4,6 +4,9 @@ import execa from 'execa'
 
 import log from './lib/log'
 import addScript from './lib/addScript'
+import copyDir from './lib/copyDir'
+
+const dependencies = ['react-native-localize']
 
 const scripts: { [key: string]: string } = {
   rename: 'npx react-native-rename-next',
@@ -34,8 +37,10 @@ async function reactNative(name: string) {
   })
 
   log.step('Adding project files')
+  await copyDir(`${path.join(__dirname, './templates/react-native')}`, cwd)
 
-  log.step('Adding dependencies')
+  log.step('Installing dependencies')
+  await execa('npx', ['add-dependencies', '--save', ...dependencies], { cwd })
 
   spinner.succeed()
 }

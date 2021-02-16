@@ -9,7 +9,7 @@ import copyDir from './lib/copyDir'
 const scripts: { [key: string]: string } = {
   test: 'jest',
   lint: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
-  format: 'prettier "./src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)"',
+  format: 'prettier "./**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)"',
   'format:write': 'npm run format -- --write',
   'validate:format': 'npm run format -- --check',
   'validate:build': 'tsc --noEmit',
@@ -30,7 +30,13 @@ const devDependencies: string[] = [
   '@types/jest',
 ]
 
-async function applyCommonConfig(name: string) {
+async function applyCommonConfig({
+  name,
+  shouldCopyCommonFolder = true,
+}: {
+  name: string
+  shouldCopyCommonFolder: boolean
+}) {
   const cwd = path.join(process.cwd(), name)
 
   const spinner = log.step('Adding scripts to package.json')
@@ -38,8 +44,10 @@ async function applyCommonConfig(name: string) {
     await addScript(`${cwd}/package.json`, key, scripts[key])
   })
 
-  log.step('Adding configuration files')
-  await copyDir(`${path.join(__dirname, './templates/common')}`, cwd)
+  if (shouldCopyCommonFolder) {
+    log.step('Adding configuration files')
+    await copyDir(`${path.join(__dirname, './templates/common')}`, cwd)
+  }
 
   log.step('Add common dependencies')
 

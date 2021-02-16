@@ -120,17 +120,14 @@ class SignificaStart extends Command {
 
     // RN conditional
     const packageManager = type === 'react-native' ? 'yarn' : 'npm'
-    const skipStep = type === 'react-native'
 
     // Add static type checking
     log.info('Adding static type checking and base configuration')
-    await common(name)
+    await common({ name, shouldCopyCommonFolder: type !== 'react-native' })
 
-    if (!skipStep) {
-      // Apply variables
-      log.info('Parse project')
-      await parseProject(path.join(process.cwd(), name), { name })
-    }
+    // Apply variables
+    log.info('Parse project')
+    await parseProject(path.join(process.cwd(), name), { name })
 
     // Git
     log.info('Git')
@@ -140,6 +137,11 @@ class SignificaStart extends Command {
     log.info('Install')
     const installSpinner = log.step('Installing dependencies')
     await execa(packageManager, ['install'], { cwd: name })
+    installSpinner.succeed()
+
+    // Format files from templates
+    log.info('Format files recent added')
+    await execa('npm', ['run format:write'], { cwd: name })
     installSpinner.succeed()
 
     // Commit dependencies
