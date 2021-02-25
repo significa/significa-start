@@ -60,7 +60,7 @@ In order to automate the process of distributing the application, Appcenter need
 
 ## 3. Build
 
-This boilerplate is prepared to run in the Appcenter, where build and distribute the application for both: iOS and Android.
+This boilerplate is prepared to run in Appcenter, where it will build and distribute the application for both iOS and Android.
 
 **Appcenter**
 
