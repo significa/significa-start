@@ -34,7 +34,7 @@ yarn install
 
 ### Environment variables
 
-react-native-dotenv provide a straightforward API to handle with environment variables
+react-native-dotenv provides a straightforward API to handle environment variables
 
 ```js
 import Config from "react-native-config";
