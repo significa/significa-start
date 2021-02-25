@@ -139,11 +139,6 @@ class SignificaStart extends Command {
     await execa(packageManager, ['install'], { cwd: name })
     installSpinner.succeed()
 
-    // Format files from templates
-    log.info('Format files recent added')
-    await execa('npm', ['run format:write'], { cwd: name })
-    installSpinner.succeed()
-
     // Commit dependencies
     log.info('Commit')
     await gitCommit(name, 'Initial files')
