@@ -53,7 +53,7 @@ Check `scripts/appcenter_envar.sh` for more details.
 
 ### iOS certificates
 
-In order to automate the process of distributing the application to the assigned user, Appcenter needs two essential files: `_.p12` and `_.mobileprovision`.
+In order to automate the process of distributing the application, Appcenter needs two essential files: `_.p12` and `_.mobileprovision`.
 
 - `fastlane match development`: _Needs more details_
 
