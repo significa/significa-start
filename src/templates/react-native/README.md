@@ -32,7 +32,7 @@ yarn install
 
 ## 2. Development
 
-### Environment variable
+### Environment variables
 
 react-native-dotenv provide a straightforward API to handle with environment variables
 
