@@ -6,7 +6,7 @@ This React Native starter aims to solve commons issues during the development st
 
 **React Native first time**
 
-The doctor command currently supports most of the software and libraries that React Native relies on, such as CocoaPods, Xcode and Android SDK. With doctor we'll find issues with your development environment and give you the option to automatically fix them. If doctor is not able to fix an issue, it will display a message and a helpful link explaining how to fix it manually as the following:
+The doctor command currently supports most of the software and libraries that React Native relies on, such as CocoaPods, Xcode, and Android SDK. With doctor, we'll find issues with your development environment and give you the option to automatically fix them. If doctor is not able to fix an issue, it will display a message and a helpful link explaining how to fix it manually:
 
 ```sh
 npx @react-native-community/cli doctor
@@ -82,4 +82,3 @@ It's an open-source platform aimed at simplifying Android and iOS deployment and
 * Appcenter should handle this automatically; otherwise, you can run using the `scripts/fastlane.sh` script.
 
 Check `ios/fastlane` and `android/fastlane` for more details.
-
