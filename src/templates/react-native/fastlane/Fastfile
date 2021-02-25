@@ -7,7 +7,7 @@ default_platform(:ios)
 reactNativeConfig = File.read("../app.json")
 appConfig = JSON.parse(reactNativeConfig)
 
-# Varaibles
+# Variables
 scheme = appConfig["name"].gsub(/-/, "")
 marketing_name = appConfig["displayName"]
 app_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
