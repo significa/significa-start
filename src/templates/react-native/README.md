@@ -51,13 +51,6 @@ In order to work properly, the package requires you to follow a specific pattern
 
 Check `scripts/appcenter_envar.sh` for more details.
 
-### iOS certificates
-
-In order to automate the process of distributing the application, Appcenter needs two essential files: `_.p12` and `_.mobileprovision`.
-
-- `fastlane match development`: _Needs more details_
-
-
 ## 3. Build
 
 This boilerplate is prepared to run in Appcenter, where it will build and distribute the application for both iOS and Android.
@@ -69,9 +62,10 @@ Appcenter is a platform to continuously build, test, release, and monitor apps. 
 - Install Fastlane dependencies;
 - Run Fastlane scripts;
 
-**Picking Appcenter certificates**
+**Code signing**
 
-_Needs more details_
+- Android: https://docs.microsoft.com/en-us/appcenter/build/android/code-signing
+- iOS: https://docs.microsoft.com/en-us/appcenter/build/ios/code-signing
 
 **Fastlane**
 
