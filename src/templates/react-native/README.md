@@ -64,7 +64,7 @@ This boilerplate is prepared to run in the Appcenter, where build and distribute
 
 **Appcenter**
 
-Appcenter is a continuously build, test, release, and monitor apps for React Native. Once the application has setup in the Appcenter, it will run the script `appcenter-pre-build.sh` with the following purpose:
+Appcenter is a platform to continuously build, test, release, and monitor apps. Once the application is setup in Appcenter, it will run the script `appcenter-pre-build.sh` to:
 - Expose environment variable;
 - Install Fastlane dependency;
 - Run Fastlane scrips;
