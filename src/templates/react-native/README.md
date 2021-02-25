@@ -47,7 +47,7 @@ Check [react-native-config](https://github.com/luggit/react-native-config) for m
 
 **Environment variables name pattern**
 
-In order to work properly, the package requires to follow a specific pattern: `RN_NAME_VAR=VALUE`. The prefix "RN\_" is very important**, once a script that will run the Appcenter will look only for these variables following this pattern.
+In order to work properly, the package requires you to follow a specific pattern: `RN_VAR_NAME=VALUE`. The prefix "RN\_" is very important**. A script that will run in Appcenter will only look only for variables that follow this pattern.
 
 Check `scripts/appcenter_envar.sh` for more details.
 
