@@ -45,7 +45,7 @@ Config.GOOGLE_MAPS_API_KEY; // 'abcdefgh'
 
 Check [react-native-config](https://github.com/luggit/react-native-config) for more details.
 
-**Env variable pattern name**
+**Environment variables name pattern**
 
 In order to work properly, the package requires to follow a specific pattern: `RN_NAME_VAR=VALUE`. The prefix "RN\_" is very important**, once a script that will run the Appcenter will look only for these variables following this pattern.
 
