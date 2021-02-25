@@ -17,7 +17,7 @@ type = ENV['RN_RELEASE_TYPE'] || 'beta'
 icon_path_beta = './metadata/app-icon-beta.png'
 icon_path_production = './metadata/app-icon.png'
 
-# Condicionals vars
+# Conditional vars
 display_name = type == 'production' ? marketing_name : "#{marketing_name} - Beta"
 icon = type === "production" ? icon_path_production : icon_path_beta
 app_identifier = type === "production" ? app_id : "#{app_id}.beta"
