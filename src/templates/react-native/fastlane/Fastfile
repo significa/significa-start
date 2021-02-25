@@ -1,0 +1,62 @@
+require 'rubygems'
+require 'json'
+
+default_platform(:ios)
+
+# Get config
+reactNativeConfig = File.read("../app.json")
+appConfig = JSON.parse(reactNativeConfig)
+
+# Varaibles
+scheme = appConfig["name"].gsub(/-/, "")
+marketing_name = appConfig["displayName"]
+app_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+type = ENV['RN_RELEASE_TYPE'] || 'beta'
+
+# Icons
+icon_path_beta = './metadata/app-icon-beta.png'
+icon_path_production = './metadata/app-icon.png'
+
+# Condicionals vars
+display_name = type == 'production' ? marketing_name : "#{marketing_name} - Beta"
+icon = type === "production" ? icon_path_production : icon_path_beta
+app_identifier = type === "production" ? app_id : "#{app_id}.beta"
+
+
+platform :ios do
+  desc "Apply configurations to the application - like appicon, app id and display name, based on build type (beta or production)"
+  lane :prep_build do
+    # IOS: Update Icon
+    appicon(
+      appicon_image_file: icon,
+      appicon_devices: [:iphone, :ios_marketing], 
+      appicon_path: "./#{scheme}/Images.xcassets"
+    )
+
+    # IOS: Update display name and app-id
+    update_info_plist(
+      xcodeproj: "./ios/#{scheme}.xcodeproj",
+      plist_path: "#{scheme}/Info.plist",
+      display_name:  display_name,
+      app_identifier: app_identifier,
+    )
+
+    # Android: Update Icon
+    android_appicon(
+      appicon_image_file: icon,
+      appicon_icon_types: [:launcher],
+      appicon_path: 'android/app/src/main/res/mipmap',
+    )
+
+    # Android: Update display name 
+    update_android_strings(
+      block: lambda { |strings|
+        strings['app_name'] = display_name
+      }
+    )
+
+    # Android: Update app-id
+    set_value_in_build( app_project_dir: "./android/app", key: "applicationId", value: app_identifier )
+    set_value_in_build( app_project_dir: "./android/app", key: "applicationIdSuffix", value: type === "production" ? "" : ".#{type}" )
+  end
+end
