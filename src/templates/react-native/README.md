@@ -2,7 +2,7 @@
 
 This React Native starter aims to solve commons issues during the development step and build process in Appcenter. It's a non-opinionated boilerplate, however it uses a couple of preset tools and scripts in order to manage the routine tasks.
 
-## 1. Getting start
+## 1. Getting started
 
 **React Native first time**
 
@@ -82,5 +82,4 @@ It's an open-source platform aimed at simplifying Android and iOS deployment and
 * Appcenter should handle this automatically; otherwise, you can run using the `scripts/fastlane.sh` script.
 
 Check `ios/fastlane` and `android/fastlane` for more details.
-
 
