@@ -10,5 +10,5 @@ echo '
 bundle install
 
 echo '
-3. Running Fastlane:beta'
+3. Running Fastlane'
 bundle exec fastlane prep_build
