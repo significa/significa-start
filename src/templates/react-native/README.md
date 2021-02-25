@@ -65,7 +65,7 @@ This boilerplate is prepared to run in the Appcenter, where build and distribute
 **Appcenter**
 
 Appcenter is a platform to continuously build, test, release, and monitor apps. Once the application is setup in Appcenter, it will run the script `appcenter-pre-build.sh` to:
-- Expose environment variable;
+- Expose environment variables;
 - Install Fastlane dependency;
 - Run Fastlane scrips;
 
