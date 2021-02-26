@@ -2,9 +2,9 @@ import path from 'path'
 
 import execa from 'execa'
 
-import addScript from './lib/addScript'
-import log from './lib/log'
-import copyDir from './lib/copyDir'
+import addScript from './utils/addScript'
+import log from './utils/log'
+import copyDir from './utils/copyDir'
 
 const scripts: { [key: string]: string } = {
   dev: 'next dev',
@@ -40,9 +40,6 @@ async function next(name: string) {
     await addScript(`${cwd}/package.json`, key, scripts[key])
   })
 
-  log.step('Adding project files')
-  await copyDir(`${path.join(__dirname, './templates/next')}`, cwd)
-
   log.step('Adding dependencies')
   await execa('npx', ['add-dependencies', '--save', ...dependencies], { cwd })
   await execa('npx', ['add-dependencies', '--save-dev', ...devDependencies], {
@@ -51,5 +48,14 @@ async function next(name: string) {
 
   spinner.succeed()
 }
+
+async function postNext(name: string) {
+  const cwd = path.join(process.cwd(), name)
+
+  log.step('Adding project files')
+  await copyDir(`${path.join(__dirname, './templates/next')}`, cwd)
+}
+
+export { postNext }
 
 export default next

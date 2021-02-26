@@ -14,8 +14,8 @@ Opinionated Significa's bootstrap CLI to start ReactJS projects based on Create 
 You can also skip the prompt and give it the configuration you want:
 
 - **Project type:** may be one of these options;
-  - `cra`: Create React App from Facebook;
-  - `next`: Next.js from Zeit;
+  - `cra`: Create React App;
+  - `next`: Next.js;
   - `gatsby`: GatsbyJS;
   - `react-native`: React Native (Expo - bare workflow);
 - **Project name:** will be used on the folder name and configuration files;
@@ -32,7 +32,6 @@ Eg: `npx @significa/start cra hello-world`.
 ## Common dependencies:
 
 - Typescript;
-- Styled-components;
 - Commitlint;
 - Lint-staged;
 - [@significa/eslint-config](https://github.com/Significa/significa-style/tree/master/packages/eslint-config);

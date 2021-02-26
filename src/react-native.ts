@@ -2,9 +2,9 @@ import path from 'path'
 
 import execa from 'execa'
 
-import log from './lib/log'
-import addScript from './lib/addScript'
-import copyDir from './lib/copyDir'
+import log from './utils/log'
+import addScript from './utils/addScript'
+import copyDir from './utils/copyDir'
 
 const dependencies = ['react-native-localize', 'react-native-config']
 
