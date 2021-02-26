@@ -5,7 +5,7 @@
 [![Downloads/week](https://img.shields.io/npm/dw/@significa/start.svg)](https://npmjs.org/package/@significa/start)
 [![License](https://img.shields.io/npm/l/@significa/start.svg)](https://github.com/significa/significa-start/blob/master/package.json)
 
-Opinionated Significa's bootstrap CLI to start ReactJS projects based on Create React App, NextJS or GatsbyJS.
+Opinionated Significa's bootstrap CLI to start ReactJS projects based on NextJS, React Native, Create React App, or GatsbyJS.
 
 `npx @significa/start`
 
