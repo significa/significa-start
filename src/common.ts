@@ -2,9 +2,9 @@ import path from 'path'
 
 import execa from 'execa'
 
-import addScript from './lib/addScript'
-import log from './lib/log'
-import copyDir from './lib/copyDir'
+import addScript from './utils/addScript'
+import log from './utils/log'
+import copyDir from './utils/copyDir'
 
 const scripts: { [key: string]: string } = {
   test: 'jest',
@@ -30,7 +30,7 @@ const devDependencies: string[] = [
   '@types/jest',
 ]
 
-async function applyCommonConfig(name: string) {
+async function common(name: string) {
   const cwd = path.join(process.cwd(), name)
 
   const spinner = log.step('Adding scripts to package.json')
@@ -38,16 +38,16 @@ async function applyCommonConfig(name: string) {
     await addScript(`${cwd}/package.json`, key, scripts[key])
   })
 
-  log.step('Adding configuration files')
-  await copyDir(`${path.join(__dirname, './templates/common')}`, cwd)
-
   log.step('Add common dependencies')
 
   await execa('npx', ['add-dependencies', '--save-dev', ...devDependencies], {
     cwd,
   })
 
+  log.step('Adding configuration files')
+  await copyDir(`${path.join(__dirname, './templates/common')}`, cwd)
+
   spinner.succeed()
 }
 
-export default applyCommonConfig
+export default common

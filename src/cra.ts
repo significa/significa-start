@@ -2,8 +2,8 @@ import path from 'path'
 
 import execa from 'execa'
 
-import log from './lib/log'
-import copyDir from './lib/copyDir'
+import log from './utils/log'
+import copyDir from './utils/copyDir'
 
 const dependencies: string[] = ['styled-components']
 const devDependencies: string[] = ['@types/styled-components']
@@ -23,9 +23,6 @@ async function cra(name: string) {
   log.step('Removing src folder')
   await execa('rm', ['-rf', 'src'], { cwd })
 
-  log.step('Adding project files')
-  await copyDir(`${path.join(__dirname, './templates/cra')}`, cwd)
-
   log.step('Installing dependencies')
   await execa('npx', ['add-dependencies', '--save', ...dependencies], { cwd })
   await execa('npx', ['add-dependencies', '--save-dev', ...devDependencies], {
@@ -34,5 +31,14 @@ async function cra(name: string) {
 
   spinner.succeed()
 }
+
+async function postCra(name: string) {
+  const cwd = path.join(process.cwd(), name)
+
+  log.step('Adding project files')
+  await copyDir(`${path.join(__dirname, './templates/cra')}`, cwd)
+}
+
+export { postCra }
 
 export default cra

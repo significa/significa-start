@@ -7,14 +7,14 @@ import chalk from 'chalk'
 import figlet from 'figlet'
 import inquirer from 'inquirer'
 
-import gatsby from './gatsby'
-import next from './next'
-import cra from './cra'
+import gatsby, { postGatsby } from './gatsby'
+import next, { postNext } from './next'
+import cra, { postCra } from './cra'
 import reactNative, { postReactNative } from './react-native'
 import common from './common'
-import log from './lib/log'
-import { gitInit, gitCommit } from './lib/git'
-import parseProject from './lib/parseProject'
+import log from './utils/log'
+import { gitInit, gitCommit } from './utils/git'
+import parseProject from './utils/parseProject'
 
 const stacks = ['cra', 'gatsby', 'next', 'react-native'] as const
 
@@ -118,15 +118,22 @@ class SignificaStart extends Command {
         process.exit(1)
     }
 
-    // RN conditional
-    const packageManager = type === 'react-native' ? 'yarn' : 'npm'
-
     // Add static type checking
     log.info('Adding static type checking and base configuration')
     await common(name)
 
     // Post-template
     switch (type) {
+      case 'cra':
+        await postCra(name)
+        break
+      case 'gatsby': {
+        await postGatsby(name)
+        break
+      }
+      case 'next':
+        await postNext(name)
+        break
       case 'react-native':
         await postReactNative(name)
         break
@@ -143,6 +150,7 @@ class SignificaStart extends Command {
     // Install dependencies
     log.info('Install')
     const installSpinner = log.step('Installing dependencies')
+    const packageManager = type === 'react-native' ? 'yarn' : 'npm'
     await execa(packageManager, ['install'], { cwd: name })
     installSpinner.succeed()
 
