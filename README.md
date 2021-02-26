@@ -37,8 +37,6 @@ Eg: `npx @significa/start cra hello-world`.
 - [@significa/eslint-config](https://github.com/Significa/significa-style/tree/master/packages/eslint-config);
 - [@significa/prettier-config](https://github.com/Significa/significa-style/tree/master/packages/prettier-config);
 - [@significa/tsconfig-config](https://github.com/Significa/significa-style/tree/master/packages/tsconfig-config);
-- [Significa-src](https://github.com/Significa/significa-src);
-- [Significa-ui](https://github.com/Significa/significa-ui);
 
 ## Running locally
 
