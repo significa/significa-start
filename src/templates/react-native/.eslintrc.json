@@ -1,6 +1,0 @@
-{
-  "extends": "@significa/eslint-config",
-  "rules": {
-    "import/no-unused-modules": ["error", { "unusedExports": true }]
-  }
-}

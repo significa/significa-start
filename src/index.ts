@@ -10,7 +10,7 @@ import inquirer from 'inquirer'
 import gatsby from './gatsby'
 import next from './next'
 import cra from './cra'
-import reactNative from './react-native'
+import reactNative, { postReactNative } from './react-native'
 import common from './common'
 import log from './lib/log'
 import { gitInit, gitCommit } from './lib/git'
@@ -123,7 +123,14 @@ class SignificaStart extends Command {
 
     // Add static type checking
     log.info('Adding static type checking and base configuration')
-    await common({ name, shouldCopyCommonFolder: type !== 'react-native' })
+    await common(name)
+
+    // Post-template
+    switch (type) {
+      case 'react-native':
+        await postReactNative(name)
+        break
+    }
 
     // Apply variables
     log.info('Parse project')

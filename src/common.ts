@@ -30,13 +30,7 @@ const devDependencies: string[] = [
   '@types/jest',
 ]
 
-async function applyCommonConfig({
-  name,
-  shouldCopyCommonFolder = true,
-}: {
-  name: string
-  shouldCopyCommonFolder: boolean
-}) {
+async function applyCommonConfig(name: string) {
   const cwd = path.join(process.cwd(), name)
 
   const spinner = log.step('Adding scripts to package.json')
@@ -44,10 +38,8 @@ async function applyCommonConfig({
     await addScript(`${cwd}/package.json`, key, scripts[key])
   })
 
-  if (shouldCopyCommonFolder) {
-    log.step('Adding configuration files')
-    await copyDir(`${path.join(__dirname, './templates/common')}`, cwd)
-  }
+  log.step('Adding configuration files')
+  await copyDir(`${path.join(__dirname, './templates/common')}`, cwd)
 
   log.step('Add common dependencies')
 
