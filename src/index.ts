@@ -10,12 +10,13 @@ import inquirer from 'inquirer'
 import gatsby from './gatsby'
 import next from './next'
 import cra from './cra'
+import reactNative, { postReactNative } from './react-native'
 import common from './common'
 import log from './lib/log'
 import { gitInit, gitCommit } from './lib/git'
 import parseProject from './lib/parseProject'
 
-const stacks = ['cra', 'gatsby', 'next'] as const
+const stacks = ['cra', 'gatsby', 'next', 'react-native'] as const
 
 type Stacks = typeof stacks[number]
 
@@ -72,6 +73,10 @@ class SignificaStart extends Command {
               name: 'Create React App',
               value: 'cra',
             },
+            {
+              name: 'React Native (Expo - bare workflow)',
+              value: 'react-native',
+            },
           ],
         })
       ).type
@@ -105,14 +110,27 @@ class SignificaStart extends Command {
       case 'next':
         await next(name)
         break
+      case 'react-native':
+        await reactNative(name)
+        break
       default:
         log.error(`Expected ${type} to be one of: ${stacks.join(' ,')}`)
         process.exit(1)
     }
 
+    // RN conditional
+    const packageManager = type === 'react-native' ? 'yarn' : 'npm'
+
     // Add static type checking
     log.info('Adding static type checking and base configuration')
     await common(name)
+
+    // Post-template
+    switch (type) {
+      case 'react-native':
+        await postReactNative(name)
+        break
+    }
 
     // Apply variables
     log.info('Parse project')
@@ -125,7 +143,7 @@ class SignificaStart extends Command {
     // Install dependencies
     log.info('Install')
     const installSpinner = log.step('Installing dependencies')
-    await execa('npm', ['install'], { cwd: name })
+    await execa(packageManager, ['install'], { cwd: name })
     installSpinner.succeed()
 
     // Commit dependencies

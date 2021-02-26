@@ -1,1 +1,0 @@
-export { StyledLayout } from './StyledLayout'

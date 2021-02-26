@@ -17,6 +17,7 @@ You can also skip the prompt and give it the configuration you want:
   - `cra`: Create React App from Facebook;
   - `next`: Next.js from Zeit;
   - `gatsby`: GatsbyJS;
+  - `react-native`: React Native (Expo - bare workflow);
 - **Project name:** will be used on the folder name and configuration files;
 
 Eg: `npx @significa/start cra hello-world`.
