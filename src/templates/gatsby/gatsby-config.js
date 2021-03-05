@@ -7,7 +7,6 @@ module.exports = {
     author: '@significa',
   },
   plugins: [
-    'gatsby-plugin-styled-components',
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',
     {
