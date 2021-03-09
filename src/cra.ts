@@ -5,8 +5,8 @@ import execa from 'execa'
 import log from './utils/log'
 import copyDir from './utils/copyDir'
 
-const dependencies: string[] = ['styled-components']
-const devDependencies: string[] = ['@types/styled-components']
+const dependencies: string[] = []
+const devDependencies: string[] = []
 
 async function cra(name: string) {
   const cwd = path.join(process.cwd(), name)

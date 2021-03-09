@@ -12,19 +12,13 @@ const scripts: { [key: string]: string } = {
   start: 'next start',
 }
 
-const dependencies: string[] = [
-  'react',
-  'react-dom',
-  'next',
-  'styled-components',
-]
+const dependencies: string[] = ['react', 'react-dom', 'next']
 
 const devDependencies: string[] = [
   'typescript',
   '@types/react',
   '@types/react-dom',
   '@types/node',
-  '@types/styled-components',
   '@svgr/webpack',
 ]
 

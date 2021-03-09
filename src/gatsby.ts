@@ -18,8 +18,6 @@ const dependencies: string[] = [
   'react',
   'react-dom',
   'gatsby',
-  // style
-  'styled-components',
   // typescript
   'gatsby-plugin-typescript',
   // needed
@@ -30,7 +28,6 @@ const dependencies: string[] = [
 const devDependencies: string[] = [
   'typescript',
   '@types/react',
-  '@types/styled-components',
   '@svgr/webpack',
   'tsconfig-paths-webpack-plugin',
   'gatsby-plugin-s3',
@@ -39,7 +36,6 @@ const devDependencies: string[] = [
   'gatsby-transformer-sharp',
   'gatsby-plugin-sharp',
   'gatsby-plugin-manifest',
-  'gatsby-plugin-styled-components',
 ]
 
 async function gatsby(name: string) {
