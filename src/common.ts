@@ -14,6 +14,7 @@ const scripts: { [key: string]: string } = {
   'validate:format': 'npm run format -- --check',
   'validate:build': 'tsc --noEmit',
   validate: 'npm run lint && npm run validate:format && npm run validate:build',
+  postinstall: 'husky install',
 }
 
 const devDependencies: string[] = [
