@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 
-import recursive from 'recursive-readdir'
 import execa from 'execa'
+import recursive from 'recursive-readdir'
 
 import log from './log'
 
@@ -20,7 +20,8 @@ type Vars = { [key: string]: string }
 /**
  * Simillarly, we can replace variables as such: {{= var }}
  */
-const removeBlockRegex = /(\/\/\s{0,1}start-remove)(.|\n){0,}(\/\/\s{0,1}end-remove)/gim
+const removeBlockRegex =
+  /(\/\/\s{0,1}start-remove)(.|\n){0,}(\/\/\s{0,1}end-remove)/gim
 
 const template = (content: string, params: Vars) => {
   let result = content

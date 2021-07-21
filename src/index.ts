@@ -2,18 +2,18 @@ import fs from 'fs'
 import path from 'path'
 
 import { Command, flags } from '@oclif/command'
-import execa from 'execa'
 import chalk from 'chalk'
+import execa from 'execa'
 import figlet from 'figlet'
 import inquirer from 'inquirer'
 
+import common from './common'
+import cra, { postCra } from './cra'
 import gatsby, { postGatsby } from './gatsby'
 import next, { postNext } from './next'
-import cra, { postCra } from './cra'
 import reactNative, { postReactNative } from './react-native'
-import common from './common'
-import log from './utils/log'
 import { gitInit, gitCommit } from './utils/git'
+import log from './utils/log'
 import parseProject from './utils/parseProject'
 
 const stacks = ['cra', 'gatsby', 'next', 'react-native'] as const
@@ -37,7 +37,7 @@ class SignificaStart extends Command {
     {
       name: 'type',
       required: false,
-      options: (stacks as unknown) as string[],
+      options: stacks as unknown as string[],
     },
     { name: 'name', required: false },
   ]
@@ -49,9 +49,8 @@ class SignificaStart extends Command {
       )}`
     )
 
-    const { args }: { args: { type: Stacks; name: string } } = this.parse(
-      SignificaStart
-    )
+    const { args }: { args: { type: Stacks; name: string } } =
+      this.parse(SignificaStart)
 
     const type =
       args.type ||

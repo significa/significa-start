@@ -1,6 +1,6 @@
 import chalk from 'chalk'
+import { cli } from 'cli-ux'
 import ora, { Ora } from 'ora'
-import cli from 'cli-ux'
 
 export function info(message: string) {
   console.log(`\n${chalk.blue('→')} ${message}`)
