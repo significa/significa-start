@@ -1,6 +1,3 @@
 {
-  "extends": "@significa/eslint-config",
-  "settings": {
-    "import/internal-regex": "^common|^lib/|^modules/|^pages/"
-  }
+  "extends": "@significa/eslint-config"
 }
