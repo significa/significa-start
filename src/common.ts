@@ -3,8 +3,8 @@ import path from 'path'
 import execa from 'execa'
 
 import addScript from './utils/addScript'
-import log from './utils/log'
 import copyDir from './utils/copyDir'
+import log from './utils/log'
 
 const scripts: { [key: string]: string } = {
   test: 'jest',

@@ -18,6 +18,7 @@
     "node/no-extraneous-require": "off",
     "node/no-missing-require": "off",
     "unicorn/no-abusive-eslint-disable": "off",
-    "node/no-unpublished-require": "off"
+    "node/no-unpublished-require": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
   }
 }

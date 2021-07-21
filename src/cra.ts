@@ -2,8 +2,8 @@ import path from 'path'
 
 import execa from 'execa'
 
-import log from './utils/log'
 import copyDir from './utils/copyDir'
+import log from './utils/log'
 
 async function cra(name: string) {
   const cwd = path.join(process.cwd(), name)
