@@ -1,7 +1,7 @@
 {
   "name": "@significa/start",
   "description": "Opinionated Significa's bootstrap CLI to start React projects based on Create React App, NextJS or GatsbyJS.",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "author": "Significa Lda. <hello@significa.co>",
   "bin": {
     "significa-start": "bin/run"
