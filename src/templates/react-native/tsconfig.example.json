@@ -1,3 +1,11 @@
 {
-  "extends": "./node_modules/@significa/tsconfig-config/react-native.json"
+  "extends": "./node_modules/@significa/tsconfig-config/react-native.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "jsx": "react",
+    "isolatedModules": false,
+    "allowSyntheticDefaultImports": true
+  },
+  "typeRoots": ["./src/types"],
+  "exclude": ["node_modules", "./node_modules", "./node_modules/*"]
 }
