@@ -6,29 +6,25 @@ import addScript from './utils/addScript'
 import copyDir from './utils/copyDir'
 import log from './utils/log'
 
-const dependencies = ['react-native-localize', 'react-native-config']
+const dependencies = ['react-native-localize', 'react-native-dotenv']
 
 const scripts: { [key: string]: string } = {
   rename: 'npx react-native-rename-next',
   clean: 'npx react-native-clean-project',
-  postinstall:
-    'cd ios && pod install || echo "Warn: iOS \'pod\' tool not found">&2',
+  release: 'standard-version && react-native-version --amend',
 }
 
 async function reactNative(name: string) {
   const cwd = path.join(process.cwd(), name)
   const spinner = log.step(
-    'Creating folder and initializing project through expo-cli'
+    'Creating folder and initializing project with react-native template'
   )
   await execa('npx', [
-    'expo-cli',
+    'react-native',
     'init',
-    '--name',
     name,
     '--template',
-    'expo-template-bare-typescript',
-    '--yarn',
-    '--no-install',
+    'react-native-template-typescript',
   ])
 
   log.step('Adding scripts to package.json')
@@ -37,7 +33,13 @@ async function reactNative(name: string) {
   })
 
   log.step('Installing dependencies')
-  await execa('npx', ['add-dependencies', '--save', ...dependencies], { cwd })
+  await execa(
+    'npx',
+    ['add-dependencies', '--save', '--save-exact', ...dependencies],
+    {
+      cwd,
+    }
+  )
 
   spinner.succeed()
 }

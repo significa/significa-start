@@ -1,5 +1,6 @@
-#!/bin/sh
-ENV_WHITELIST=${ENV_WHITELIST:-"^RN"}
-set | egrep -e $ENV_WHITELIST | egrep -v "^_" | egrep -v "WHITELIST" > .env
-printf "\n.env created with contents:\n"
+#!/usr/bin/env bash
+# Creates an .env from ENV variables for use with react-native-dotenv
+ENV_WHITELIST=${ENV_WHITELIST:-"^RN_"}
+printf "\nCreating an .env file with:\n"
+set | egrep -e $ENV_WHITELIST | sed 's/^RN_//g' > .env
 cat .env

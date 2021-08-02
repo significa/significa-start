@@ -29,7 +29,6 @@ yarn install
 - `sh ./scripts/fastlane.sh`: install the Fastlane environnement;
 - `sh ./scripts/sync-cocoapods-version.sh`: install the version the is set in the Podfile;
 
-
 ## 2. Development
 
 ### Environment variables
@@ -37,17 +36,14 @@ yarn install
 react-native-dotenv provides a straightforward API to handle environment variables
 
 ```js
-import Config from "react-native-config";
-
-Config.API_URL; // 'https://myapi.com'
-Config.GOOGLE_MAPS_API_KEY; // 'abcdefgh'
+import { ENV_VAR } from 'react-native-dotenv'
 ```
 
-Check [react-native-config](https://github.com/luggit/react-native-config) for more details.
+Check [react-native-dotenv](https://github.com/goatandsheep/react-native-dotenv) for more details.
 
 **Environment variables name pattern**
 
-In order to work properly, the package requires you to follow a specific pattern: `RN_VAR_NAME=VALUE`. The prefix "RN\_" is very important**. A script that will run in Appcenter will only look only for variables that follow this pattern.
+The prefix "RN\_" is very important\*\* when you define the vars in appcenter that are injected inside the app. A script that will run in Appcenter will only look only for variables that follow this pattern.
 
 Check `scripts/appcenter_envar.sh` for more details.
 
@@ -58,6 +54,7 @@ This boilerplate is prepared to run in Appcenter, where it will build and distri
 **Appcenter**
 
 Appcenter is a platform to continuously build, test, release, and monitor apps. Once the application is setup in Appcenter, it will run the script `appcenter-pre-build.sh` to:
+
 - Expose environment variables;
 - Install Fastlane dependencies;
 - Run Fastlane scripts;
@@ -70,6 +67,7 @@ Appcenter is a platform to continuously build, test, release, and monitor apps. 
 **Fastlane**
 
 It's an open-source platform aimed at simplifying Android and iOS deployment and everyday tasks. Each platform has its own configuration file with its proper tasks, but in general, all of them have this in common:
+
 - Update icon: set an application icon according to build type. Icons images are in the metadata folder;
 - Update application name: set the application name according to build type (like My app - Beta or My app). The name is taken from App.json in the root folder.
 
