@@ -20,6 +20,7 @@ const devDependencies: string[] = [
   '@types/react-dom',
   '@types/node',
   '@svgr/webpack',
+  '@next/eslint-plugin-next',
 ]
 
 async function next(name: string) {
