@@ -1,6 +1,7 @@
 {
   "extends": [
-    "@significa/eslint-config",
+    "@significa",
+    "@significa/eslint-config/react",
     "plugin:@next/next/recommended"
   ],
   "rules": {

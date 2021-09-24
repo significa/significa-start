@@ -1,3 +1,3 @@
 `src/components`
 
-Use this folder for components ¯\_(ツ)_/¯
+Use this folder for components ¯\_(ツ)\_/¯

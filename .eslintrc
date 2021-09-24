@@ -1,9 +1,6 @@
 {
   "extends": [
-    "oclif",
-    "oclif-typescript",
-    "plugin:react/recommended",
-    "@significa/eslint-config"
+    "@significa"
   ],
   "rules": {
     "import/default": "off",
