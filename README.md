@@ -20,7 +20,7 @@ You can also skip the prompt and give it the configuration you want:
   - `react-native`: React Native (Expo - bare workflow);
 - **Project name:** will be used on the folder name and configuration files;
 
-Eg: `npx @significa/start cra hello-world`.
+Eg: `npx @significa/start@latest next hello-world`.
 
 ## Commands
 
