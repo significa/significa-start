@@ -9,6 +9,7 @@ import log from './utils/log'
 const scripts: { [key: string]: string } = {
   test: 'jest',
   lint: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
+  'lint:fix': 'npm run link -- --fix',
   format: 'prettier "./src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)"',
   'format:write': 'npm run format -- --write',
   'validate:format': 'npm run format -- --check',
@@ -22,6 +23,7 @@ const devDependencies: string[] = [
   '@significa/prettier-config',
   '@significa/tsconfig-config',
   //
+  'eslint',
   '@commitlint/cli',
   '@commitlint/config-conventional',
   'husky',
