@@ -9,7 +9,7 @@ import log from './utils/log'
 const scripts: { [key: string]: string } = {
   test: 'jest',
   lint: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
-  'lint:fix': 'npm run link -- --fix',
+  'lint:fix': 'npm run lint -- --fix',
   format: 'prettier "./src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)"',
   'format:write': 'npm run format -- --write',
   'validate:format': 'npm run format -- --check',
