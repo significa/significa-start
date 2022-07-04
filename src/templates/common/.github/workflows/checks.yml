@@ -1,19 +1,19 @@
 name: Checks
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version-file: '.nvmrc'
 
       - name: Install dependencies
         run: npm ci
@@ -23,16 +23,14 @@ jobs:
 
   build:
     name: Build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version-file: '.nvmrc'
 
       - name: Install dependencies
         run: npm ci
@@ -42,16 +40,14 @@ jobs:
 
   test:
     name: Test
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version-file: '.nvmrc'
 
       - name: Install dependencies
         run: npm ci
